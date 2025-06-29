@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class MovieController extends Controller
 {
+    // Show trending movies
     public function index()
     {
         $response = Http::withToken(config('services.tmdb.token'))
@@ -14,5 +15,15 @@ class MovieController extends Controller
         $movies = $response->json()['results'] ?? [];
 
         return view('movies.index', compact('movies'));
+    }
+
+    // Show movie details
+    public function show($id)
+    {
+        $movie = Http::withToken(config('services.tmdb.token'))
+            ->get("https://api.themoviedb.org/3/movie/{$id}?append_to_response=videos,credits")
+            ->json();
+
+        return view('movies.show', compact('movie'));
     }
 }

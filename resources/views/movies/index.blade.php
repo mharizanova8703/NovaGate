@@ -11,6 +11,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $movie['title'] }}</h5>
                     <p class="card-text">{{ \Illuminate\Support\Str::limit($movie['overview'], 100) }}</p>
+                    <a href="{{ route('movies.show', $movie['id']) }}">
+                        <img src="..." class="card-img-top" alt="...">
+                    </a>
                 </div>
             </div>
         </div>
