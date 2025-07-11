@@ -12,6 +12,7 @@
     @endif
 
     <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}">
+
     @if(isset($movie['videos']['results'][0]))
     <div class="mb-4">
         <h4>Trailer</h4>
@@ -19,8 +20,9 @@
             src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" 
             frameborder="0" allowfullscreen></iframe>
     </div>
-@endif
-@if(isset($movie['credits']['cast']))
+    @endif
+
+    @if(isset($movie['credits']['cast']))
     <div>
         <h4>Top Cast</h4>
         <ul class="list-unstyled d-flex flex-wrap">
@@ -33,16 +35,42 @@
             @endforeach
         </ul>
     </div>
-@endif
-<ul>
-    <li><strong>Release Date:</strong> {{ $movie['release_date'] }}</li>
-    <li><strong>Runtime:</strong> {{ $movie['runtime'] }} minutes</li>
-    <li><strong>Genres:</strong> 
-        @foreach($movie['genres'] as $genre)
-            {{ $genre['name'] }}@if (!$loop->last), @endif
-        @endforeach
-    </li>
-    <li><strong>Rating:</strong> {{ $movie['vote_average'] }}/10</li>
-</ul>
+    @endif
+
+    <ul>
+        <li><strong>Release Date:</strong> {{ $movie['release_date'] }}</li>
+        <li><strong>Runtime:</strong> {{ $movie['runtime'] }} minutes</li>
+        <li><strong>Genres:</strong> 
+            @foreach($movie['genres'] as $genre)
+                {{ $genre['name'] }}@if (!$loop->last), @endif
+            @endforeach
+        </li>
+        <li><strong>Rating:</strong> {{ $movie['vote_average'] }}/10</li>
+    </ul>
+
+    {{-- ✅ User Reviews Section --}}
+    <section class="mt-5">
+        <h2 class="text-xl font-bold mb-4">User Reviews</h2>
+
+        @forelse (\App\Models\Review::where('tmdb_id', $movie['id'])->where('is_approved', true)->latest()->get() as $review)
+            <div class="mb-4 p-4 border rounded bg-white shadow">
+                <p class="text-sm text-gray-800">{{ $review->content }}</p>
+                <p class="text-xs text-gray-500 mt-2">
+                    Posted by {{ $review->user->name ?? 'Anonymous' }} on {{ $review->created_at->format('M d, Y') }}
+                </p>
+            </div>
+        @empty
+            <p class="text-gray-600">No reviews yet. Be the first to write one!</p>
+        @endforelse
+    </section>
+
+    @auth
+    <livewire:submit-user-review :tmdbId="$movie['id']" />
+    @else
+        <p class="text-sm text-gray-600 mt-4">
+            <a href="{{ route('login') }}" class="text-purple-600 underline">Log in</a> to submit a review.
+        </p>
+    @endauth
+
 </div>
 @endsection
