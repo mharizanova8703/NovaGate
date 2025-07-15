@@ -37,7 +37,7 @@
     </ul>
     @endif
         </div>
-         <div class="col-lg-6">
+         <div class="col-lg-4 col-10">
             
     <img class="w-100" src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}">
 

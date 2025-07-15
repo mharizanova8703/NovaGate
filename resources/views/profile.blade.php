@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2>Update Profile</h2>
+<div  id="profile" class="container">
+    <div class="col-lg-8 col-12 mx-auto">
+    <h2 class="py-4">Update Profile</h2>
 
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
@@ -34,7 +35,8 @@
             <input type="file" name="profile_image" class="form-control mt-2">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Profile</button>
+        <button type="submit" class="button-red mt-4">Update Profile</button>
     </form>
+    </div>
 </div>
 @endsection
