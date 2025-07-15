@@ -1,8 +1,17 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+
 
 // Variables
+@import 'colors';
 @import 'variables';
+@import 'navbar';
+@import 'common';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: $font-family-sans-serif;
+    color: $white;
+    background-color: $black;
+}
