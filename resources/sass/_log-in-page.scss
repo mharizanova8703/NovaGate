@@ -1,7 +1,56 @@
-#log-in-page{
-    .form-control{
+#log-in-page-main {
+    background-image: url("../images/bg-lg-in.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 1;
+
+
+}
+
+#log-in-page {
+    background-color: $red;
+
+    .tickets {
+        width: 300px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .form-control {
         border-radius: 0;
         color: $white;
-        
+
+    }
+
+    .card {
+        background-color: $red;
+
+        width: 100%;
+
+        .card-body {
+            background-color: $red;
+            color: $white;
+        }
+
+
+        .card-header {
+            background-color: $red;
+            margin: auto;
+            text-align: center;
+            color: $white;
+            margin: auto;
+            text-align: center;
+            border-bottom: 0;
+            font-weight: 700;
+            font-family: "Roboto",
+                sans-serif;
+            font-size: 3rem;
+        }
+
+        .form-check-input {
+            border-radius: 0;
+        }
     }
 }

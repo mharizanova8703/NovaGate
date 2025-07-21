@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="log-in-page" class="container-fluid m-0 p-0">
+    <div class="container-fluid m-0 p-0" id="log-in-page-main">
         <div class="row justify-content-center p-0 m-0">
-            <div class="col-md-7 p-0 m-0">
+            <div class="col-md-6 p-0 m-0">
                 <img class="w-100" src="{{ asset('images/banner-movie.png') }}" alt="Banner Movie">
             </div>
-            <div class="col-md-5 p-0 m-0 vh-100 d-flex justify-content-center align-items-center">
-                <div class="card border-0">
+            <div id="log-in-page" class="col-md-6 p-0 m-0  d-flex justify-content-center align-items-center">
+                
+                <div class="card border-0 py-4">
+                    <div class="mx-auto">
+                        <img  class="tickets" src="{{ asset('images/tickets.svg') }}">
+                    </div>
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body">
@@ -18,7 +22,7 @@
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -54,30 +58,48 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
 
-                                        <label class="form-check-label" for="remember">
+                                        <label class="form-check-label" for="remember" data-bs-toggle="tooltip"
+                                            data-bs-placement="right"
+                                            title="Stay logged in on this device. Don’t use on public computers.">
                                             {{ __('Remember Me') }}
+                                            <i class="bi bi-info-circle ms-1"></i>
                                         </label>
+
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn">
+                                    <button type="submit" class="btn text-white">
                                         {{ __('Login') }}
                                     </button>
 
                                     @if (Route::has('password.request'))
-                                        <a class="btn" href="{{ route('password.request') }}">
+                                        <a class="text-white" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+            {{-- <div class="col-12">
+                    <img class="w-100 h-1" src="{{ asset('images/bg-lg-in.svg') }}" alt="Banner Movie">
+                </div>
+        </div> --}}
     </div>
 @endsection
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
+@endpush
