@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container-fluid m-0 p-0" id="log-in-page-main">
-        <div class="row justify-content-center p-0 m-0">
-            <div class="col-md-6 p-0 m-0">
+        <div class="row justify-content-center p-0 m-0 min-vh-100">
+            <div class="col-md-6 p-0 m-0 align-items-stretch">
                 <img class="w-100" src="{{ asset('images/banner-movie.png') }}" alt="Banner Movie">
             </div>
-            <div id="log-in-page" class="col-md-6 p-0 m-0  d-flex justify-content-center align-items-center">
+            <div id="log-in-page" class="col-md-6 p-0 m-0  d-flex justify-content-center align-items-center ">
                 
                 <div class="card border-0 py-4">
                     <div class="mx-auto">
@@ -87,10 +87,10 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-12">
+            <div class="col-12">
                     <img class="w-100 h-1" src="{{ asset('images/bg-lg-in.svg') }}" alt="Banner Movie">
                 </div>
-        </div> --}}
+        </div>
     </div>
 @endsection
 @push('scripts')

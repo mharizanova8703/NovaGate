@@ -9,12 +9,14 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
+                    <div class="text-center">
+                        <h1>Welcome<br> {{ Auth::user()->name }}</h1>
+                    </div>
 
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>

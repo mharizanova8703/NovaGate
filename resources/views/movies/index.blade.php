@@ -23,25 +23,28 @@
     <div class="row">
 
         @foreach($movies as $movie)
-        <div class="col-md-3 col-12 mb-4">
-            <div class="card py-3">
-                <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" class="card-img-top"
-                    alt="{{ $movie['title'] }}">
-                <div class="card-body">
-                    <h5 class="card-title d-flex align-items-center">
-                        {{ $movie['title'] }}
-
-                    </h5>
-                    <p class="card-text ">{{ \Illuminate\Support\Str::limit($movie['overview'], 100) }}</p>
-                    <div class="py-4">
-                        <a href="{{ route('movies.show', $movie['id']) }}" class="button-info">
-                            Movie Info
-                        </a>
-                    </div>
-                </div>
-                <livewire:watchlist-button :tmdbId="$movie['id']" />
-            </div>
+       <div class="col-md-3 col-12 mb-4">
+    <div class="card position-relative border-0">
+        <div class="position-relative">
+            <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" class="card-img-top" alt="{{ $movie['title'] }}">
+           
         </div>
+      <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start">
+        <h5 class="card-title mb-0">{{ $movie['title'] }}</h5>
+        <livewire:watchlist-button :tmdbId="$movie['id']" />
+    </div>
+
+    <p class="card-text mt-2">{{ \Illuminate\Support\Str::limit($movie['overview'], 100) }}</p>
+
+    <div class="py-4">
+        <a href="{{ route('movies.show', $movie['id']) }}" class="button-info">Movie Info</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
         @endforeach
 
     </div>
