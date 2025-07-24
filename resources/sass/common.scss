@@ -93,3 +93,27 @@
 .watchlist-btn:hover {
     transform: scale(1.1);
 }
+.frosted-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: rgba(255, 255, 255, 0.1);
+    /* Transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: make text stand out */
+.frosted-navbar .nav-link,
+.frosted-navbar .navbar-brand {
+    color: white !important;
+}
+
+.frosted-navbar .nav-link:hover {
+    color: #ffd700 !important;
+    /* gold on hover */
+}
+

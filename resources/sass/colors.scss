@@ -5,3 +5,10 @@ $black: #000;
 
 $info-color: #03b2ff;
 $red:#ce0e2d;
+
+.bg-red{
+background-color: $red;
+}
+.bg-info-color{
+    background-color: $info-color;
+}
