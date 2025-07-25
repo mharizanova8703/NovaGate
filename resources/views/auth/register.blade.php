@@ -6,7 +6,7 @@
         <div class="col-md-6 col-lg-4">
             <div class="card w-100 py-5 px-4">
                 <div class="text-center mb-4">
-                    <h2 class="mb-1">Create Your Account</h2>
+                    <h2 class="mb-1 bebas-neue-regular font-xxmd">Create Your Account</h2>
                     <p class="mb-0">Join the cast, rate movies, and unlock your watchlist adventure!</p>
                 </div>
                 <div class="card-body">
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="register-btn  w-100">
+                            <button type="submit" class="register-btn  bebas-neue-regular  w-100">
                                 Register
                             </button>
                         </div>

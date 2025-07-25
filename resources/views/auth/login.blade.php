@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="container-fluid m-0 p-0" id="log-in-page-main">
-    <div class="row justify-content-center p-0 m-0 min-vh-100">
-        <div class="col-md-6 p-0 m-0 align-items-stretch">
-            <img class="w-100" src="{{ asset('images/banner-movie.png') }}" alt="Banner Movie">
+    <div class="row justify-content-center p-0 m-0">
+        <div class="col-md-7 p-0 m-0 login-section">
+
         </div>
-        <div id="log-in-page" class="col-md-6 p-0 m-0  d-flex justify-content-center align-items-center ">
+        <div id="log-in-page" class="col-md-5 p-0 m-0  d-flex justify-content-center align-items-center ">
 
             <div class="card border-0 py-4">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header bebas-neue-regular ">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" class="px-5">
                         @csrf
 
                         <div class="mb-3">
@@ -67,9 +67,7 @@
 
             </div>
         </div>
-        <div class="col-12">
-            <img class="w-100 h-1" src="{{ asset('images/bg-lg-in.svg') }}" alt="Banner Movie">
-        </div>
+      
     </div>
 </div>
 @endsection

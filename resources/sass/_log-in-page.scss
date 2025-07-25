@@ -1,58 +1,69 @@
 #log-in-page-main {
-    background-image: url("../images/bg-lg-in.svg");
+    .row {
+        display: flex;
+    }
+.login-section{
+    background-image: url('../../public/images/login-banner.svg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    z-index: 1;
-    font-family: "Bebas Neue",
-        sans-serif;
-
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-#log-in-page {
-    background-color: $red;
-
-    .tickets {
-        width: 300px;
-        margin: auto;
-        text-align: center;
+    .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
     }
 
-    .form-control {
-        border-radius: 0;
-        color: $white;
-
+    .col-md-6 img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
     }
 
-    .card {
+    #log-in-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
         background-color: $red;
 
-        width: 100%;
-
-        .card-body {
-            background-color: $red;
-            color: $white;
-        }
-
-
-        .card-header {
-            background-color: $red;
+        .tickets {
+            width: 300px;
             margin: auto;
             text-align: center;
-            color: $white;
-            margin: auto;
-            text-align: center;
-            border-bottom: 0;
-            font-weight: 700;
-            font-family: "Roboto",
-                sans-serif;
-            font-size: 3rem;
         }
 
-        .form-check-input {
+        .form-control {
             border-radius: 0;
+            color: $white;
+        }
+
+        .card {
+            background-color: $red;
+            width: 100%;
+
+            .card-body {
+                background-color: $red;
+                color: $white;
+            }
+
+            .card-header {
+                background-color: $red;
+                margin: auto;
+                text-align: center;
+                color: $white;
+                letter-spacing: 1.5px;
+                border-bottom: 0;
+                font-weight: 700;
+                font-size: 3rem;
+            }
+
+            .form-check-input {
+                border-radius: 0;
+            }
         }
     }
 }
