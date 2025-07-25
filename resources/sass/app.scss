@@ -3,19 +3,20 @@
 
 // Variables
 @import 'colors';
+@import 'font.scss';
 @import 'variables';
 @import 'navbar';
 
 @import 'common';
 @import 'profile';
 @import 'log-in-page';
+@import 'register-page';
+@import 'buttons.scss';
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
 body {
-    font-family: "Roboto",
-        sans-serif;
-
+  
     color: $white;
     background-color: $black;
 }
