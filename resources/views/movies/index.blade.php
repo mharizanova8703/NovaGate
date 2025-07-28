@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex flex-column flex-md-row align-items-start justify-content-between py-4">
-        <h1 class="me-md-4 mb-3 mb-md-0">Trending Movies</h1>
+        <h1 class="me-md-4 mb-3 mb-md-0 bebas-neue-regular">Trending Movies</h1>
 
         <form action="{{ route('movies.search') }}" method="GET" role="search" aria-label="Search Movies"
             class="d-flex flex-column flex-sm-row">
@@ -12,8 +12,8 @@
             <input type="text" id="movie-search" name="query" placeholder=" Search for a movie..."
                 class="search-input mb-2 mb-sm-0 me-sm-2">
 
-            <button type="submit" class="search-btn" aria-label="Submit movie search">
-                search 🔍
+            <button type="submit" class="search-btn d-flex" aria-label="Submit movie search">
+                search <span>🔍</span>
             </button>
         </form>
     </div>

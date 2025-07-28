@@ -76,3 +76,18 @@
     width: 299px;
     border: none;
 }
+
+.search-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: $red;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.search-btn .search-icon {
+    display: inline-block;
+    font-size: 1rem;
+}

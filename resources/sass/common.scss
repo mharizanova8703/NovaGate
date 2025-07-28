@@ -1,5 +1,3 @@
-
-
 .card {
     height: 100%;
     display: flex;
@@ -37,7 +35,10 @@
 
 .watchlist-btn:hover {
     transform: scale(1.1);
+    border-color: $info-color;
+
 }
+
 .frosted-navbar {
     position: sticky;
     top: 0;
@@ -61,4 +62,3 @@
     color: #ffd700 !important;
     /* gold on hover */
 }
-
