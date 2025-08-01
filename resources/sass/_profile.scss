@@ -1,4 +1,20 @@
-#profile {
+#profile-section {
+    .btn-red {
+        background-color: $red;
+        border-radius: 1.6rem;
+        color: $white;
+        font-weight: bold;
+        padding: 0.7rem 3rem;
+        text-decoration: none;
+
+        &:hover {
+            border-color: 1px solid $info-color;
+            background-color: $black;
+            color: $info-color;
+            border: $info-color;
+        }
+    }
+
     .profile-section {
         background-color: $red;
         padding: 2rem;
@@ -22,6 +38,8 @@
         height: 100px;
         object-fit: cover;
     }
+
+
 }
 
 #popcorn-wrapper {

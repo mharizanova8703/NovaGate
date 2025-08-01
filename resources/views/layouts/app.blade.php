@@ -30,7 +30,7 @@
 <body>
     <div id="app">
         <nav
-            class="navbar navbar-expand-md bg-black shadow-sm sticky-top shadow-sm">
+            class="navbar navbar-expand-md  shadow-sm sticky-top shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -106,6 +106,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <x-footer />
     </div>
 
     <!-- Bootstrap JS Bundle (includes Popper for tooltips) -->
