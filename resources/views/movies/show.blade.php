@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row d-flex">
-        <div class="col-lg-6">
-    <h1>{{ $movie['title'] }}</h1>
+        <div class="col-lg-5">
+    <h1 class="bebas-neue-regular ">{{ $movie['title'] }}</h1>
     <p>{{ $movie['overview'] }}</p>
     <p><strong>Release Date:</strong> {{ $movie['release_date'] }}</p>
     <p><strong>Runtime:</strong> {{ $movie['runtime'] }} min</p>
@@ -14,7 +14,7 @@
     @endif
       @if(isset($movie['credits']['cast']))
     <div>
-        <h4>Top Cast</h4>
+        <h4 class="bebas-neue-regular ">Top Cast</h4>
         <ul class="list-unstyled d-flex flex-wrap">
             @foreach(array_slice($movie['credits']['cast'], 0, 5) as $cast)
                 <li class="me-3 text-center">
@@ -43,10 +43,10 @@
 
         </div>
     </div>
-    <div class="col-8">
+    <div class="col-12">
          @if(isset($movie['videos']['results'][0]))
     <div class="mb-4">
-        <h4>Trailer</h4>
+        <h4 class="bebas-neue-regular ">Trailer</h4>
         <iframe width="100%" height="400" 
             src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" 
             frameborder="0" allowfullscreen></iframe>
@@ -56,9 +56,10 @@
 
 
 
-
-    <section class="mt-5">
-        <h2 class="text-xl font-bold mb-4">User Reviews</h2>
+<div class="row">
+    <div class="">
+    <section class="mt-5 col-12">
+        <h2 class="text-xl font-bold mb-4 bebas-neue-regular ">User Reviews</h2>
 
         @forelse (\App\Models\Review::where('tmdb_id', $movie['id'])->where('is_approved', true)->latest()->get() as $review)
             <div class="mb-4 p-4 border rounded bg-white shadow">
@@ -79,6 +80,9 @@
             <a href="{{ route('login') }}" class="text-purple-600 underline">Log in</a> to submit a review.
         </p>
     @endauth
+    </div>
+</div>
+
 
 </div>
 @endsection

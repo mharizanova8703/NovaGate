@@ -18,8 +18,8 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-body {
-  
+html, body {
+    min-height: 80vh;
     color: $white;
     background-color: $black;
 }

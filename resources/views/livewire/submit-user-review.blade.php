@@ -5,7 +5,7 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="submit" class="space-y-4">
+    <form wire:submit.prevent="submit" class="btn-red">
         <div>
             <label for="review-content" class="block text-sm font-medium text-gray-700">
                 Your Review
@@ -24,7 +24,7 @@
 
         <div>
             <button type="submit"
-                class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800 transition">
+                class="btn-red text-white px-4 py-2 rounded hover:bg-purple-800 transition">
                 Submit Review
             </button>
         </div>
