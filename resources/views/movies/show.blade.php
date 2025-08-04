@@ -62,7 +62,7 @@
         <h2 class="text-xl font-bold mb-4 bebas-neue-regular ">User Reviews</h2>
 
         @forelse (\App\Models\Review::where('tmdb_id', $movie['id'])->where('is_approved', true)->latest()->get() as $review)
-            <div class="mb-4 p-4 border rounded bg-white shadow">
+            <div class="mb-4 p-4 border  bg-white shadow">
                 <p class="text-sm text-gray-800">{{ $review->content }}</p>
                 <p class="text-xs text-gray-500 mt-2">
                     Posted by {{ $review->user->name ?? 'Anonymous' }} on {{ $review->created_at->format('M d, Y') }}
@@ -76,7 +76,7 @@
     @auth
     <livewire:submit-user-review :tmdbId="$movie['id']" />
     @else
-        <p class="text-sm text-gray-600 mt-4">
+        <p class="text-sm  mt-4">
             <a href="{{ route('login') }}" class="text-purple-600 underline">Log in</a> to submit a review.
         </p>
     @endauth

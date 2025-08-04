@@ -8,23 +8,23 @@
     <form wire:submit.prevent="submit" class="btn-red">
         <div>
             <label for="review-content" class="block text-sm font-medium text-gray-700">
-                Your Review
+          
             </label>
             <textarea
                 id="review-content"
                 wire:model.defer="content"
                 rows="4"
-                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                class="w-full border border-gray-300 w-75 px-3 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 placeholder="Share your thoughts..."
             ></textarea>
             @error('content')
-                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                <p class="text-sm text-red mt-5">{{ $message }}</p>
             @enderror
         </div>
 
-        <div>
+        <div class="pt-5">
             <button type="submit"
-                class="btn-red text-white px-4 py-2 rounded hover:bg-purple-800 transition">
+                class="search-btn  text-red px-4 py-2 transition">
                 Submit Review
             </button>
         </div>
