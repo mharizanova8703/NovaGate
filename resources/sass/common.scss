@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+main {
+    min-height: 80vh;
+}
+
 .card-img-top {
     height: 300px;
     object-fit: cover;
@@ -20,6 +24,22 @@
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn-success {
+    background-color: rgb(62, 237, 179) !important;
+}
+
+.btn-danger {
+    background-color: $red !important;
+}
+
+#main {
+    background-image: url('../../public/images/film-bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+        backdrop-filter: blur(10px);
+    background-position: bottom;
 }
 
 .watchlist-btn {
@@ -50,6 +70,47 @@
     /* Safari support */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.trivia-section {
+    .badge {
+        background-color: $red;
+    }
+
+    .card {
+        color: $white;
+        border-radius: 0;
+        background: rgb(23 22 22 / 73%);
+        padding: 2rem;
+        transition: border 0.3s ease,
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+
+        &:hover {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 0, 128, 0.2); // pink-glow
+        }
+
+        h5 {
+            font-family: "Bebas Neue",
+                sans-serif;
+            font-size: 2rem;
+            margin: auto;
+            padding: 1.4rem;
+        }
+
+        .btn {
+            border: 1px solid $info-color;
+            color: $info-color;
+
+            &:hover {
+                color: $red;
+                transition: all 0.3s ease;
+            }
+        }
+    }
 }
 
 /* Optional: make text stand out */

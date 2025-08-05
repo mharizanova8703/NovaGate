@@ -7,8 +7,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <title>Movie App</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
