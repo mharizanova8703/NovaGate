@@ -38,7 +38,7 @@ main {
     background-image: url('../../public/images/film-bg.svg');
     background-size: cover;
     background-repeat: no-repeat;
-        backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     background-position: bottom;
 }
 
@@ -70,6 +70,35 @@ main {
     /* Safari support */
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#win-message {
+    background: rgb(23 22 22 / 73%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+
+    h3 {
+        color: $red;
+        padding-top: 7rem;
+    }
+
+    a {
+        color: $white;
+        text-decoration: none;
+        &:hover{
+            color: $red;
+            text-decoration: underline;
+        }
+    }
 }
 
 .trivia-section {

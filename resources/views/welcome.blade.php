@@ -28,7 +28,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-md shadow-sm sticky-top">
             <div class="container-fluid">
-              
+
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -82,9 +82,15 @@
                 </div>
             </div>
         </nav>
-
+  
         <!-- Main Content -->
-        <main    id="main" class="py-4">
+        <main id="main" class="py-4">
+             <div id="win-message" class="text-center py-5" style="display: none;">
+                    <h3 class="fw-bold mb-3 bebas-neue-regular font-xxmd">Great job!</h3>
+                    <p class="fs-5 px-5">Now it's time to join the movie<br> fun please <a href="{{ route('login') }}">log
+                            in</a> or <a href="{{ route('register') }}">register</a> to save your progress and unlock
+                        more trivia!</p>
+            </div>
             <section class="trivia-section container-fluid py-5 m-0">
                 <div class="text-center mb-3">
                     <span class="badge  px-3 py-2 fs-5">Score: <span id="score">0</span>/1</span>
@@ -155,8 +161,8 @@
     @stack('scripts')
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
     let score = 0;
     const totalQuestions = 3;
 
@@ -176,21 +182,24 @@
           if (isCorrect) {
             score++;
             document.getElementById("score").textContent = score;
+if (score === totalQuestions) {
+  // 🎉 Confetti celebration
+  confetti({
+    particleCount: 150,
+    spread: 90,
+    origin: { y: 0.6 }
+  });
 
-            // 🎉 Trigger confetti if they get all answers correct
-            if (score === totalQuestions) {
-              confetti({
-                particleCount: 150,
-                spread: 90,
-                origin: { y: 0.6 }
-              });
-            }
+  document.querySelector('.trivia-section').style.display = 'none';
+
+  document.getElementById('win-message').style.display = 'block';
+}
           }
         });
       });
     });
   });
-</script>
+    </script>
 </body>
 
 </html>

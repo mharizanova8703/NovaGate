@@ -10,23 +10,23 @@
 <div id="profile-section" class="container">
 
     <div class="d-flex align-items-center gap-4 mb-4">
-        <div class="row">
-            <div class="col-6">
-                @if(auth()->user()->profile_image)
-                <img src="{{ asset(auth()->user()->profile_image) }}" width="80" height="80"
-                    style="border-radius: 50%; object-fit: cover; border: 2px solid #fff;" alt="Profile Image">
-                @else
-                <img src="{{ asset('images/default-avatar.png') }}" width="80" height="80"
-                    style="border-radius: 50%; object-fit: cover; border: 2px solid #fff;" alt="Default Avatar">
-                @endif
-            </div>
-            <div class="col-6">
-                <h2 class="m-0 bebas-neue-regular">Update Profile</h2>
-            </div>
+        <!-- Avatar -->
+        <div>
+            @if(auth()->user()->profile_image)
+            <img src="{{ asset(auth()->user()->profile_image) }}" width="80" height="80"
+                style="border-radius: 50%; object-fit: cover; border: 2px solid #fff;" alt="Profile Image">
+            @else
+            <img src="{{ asset('images/default-avatar.png') }}" width="80" height="80"
+                style="border-radius: 50%; object-fit: cover; border: 2px solid #fff;" alt="Default Avatar">
+            @endif
         </div>
 
-
+        <!-- Name -->
+        <div>
+            <h2 class="m-0 bebas-neue-regular">{{ old('name', Auth::user()->name) }}</h2>
+        </div>
     </div>
+
 
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
@@ -51,11 +51,18 @@
         </div>
 
         <div class="mb-3">
-            <label>Change Profile Image</label>
-            <input type="file" name="profile_image" class="form-control mt-2">
-        </div>
+            <label class="form-label d-block">Change Profile Image</label>
 
-        <button type="submit" class="btn-red ">Update Profile</button>
+            <label for="profileUpload" class="btn ">
+                <i class="bi bi-upload me-2"></i>Choose Image
+            </label>
+
+            <input type="file" name="profile_image" id="profileUpload" class="d-none">
+        </div>
+        <div class="mx-auto pt-4">
+            <button type="submit" class="btn-red ">Update Profile</button>
+
+        </div>
     </form>
 </div>
 @endsection
@@ -70,22 +77,28 @@
             const startX = Math.random() * window.innerWidth;
             const wiggle = (Math.random() - 0.5) * 100;
             const fallDuration = 2 + Math.random() * 2;
-            const delay = Math.random() * 2;
+            const delay = Math.random() * 4;
 
             pop.style.left = `${startX}px`;
 
             gsap.to(pop, {
-                duration: fallDuration,
-                y: window.innerHeight + 100,
-                x: `+=${wiggle}`,
-                opacity: 1,
-                delay: delay,
-                ease: "power2.out",
-                repeat: -1,
-                repeatDelay: 1 + Math.random(),
-                yoyo: false,
+              duration: fallDuration,
+  y: window.innerHeight + 100,
+  x: `+=${wiggle}`,
+  opacity: 1,
+  delay: delay,
+  ease: "power2.out"
             });
         });
     });
+    document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("profileUpload");
+    const label = document.querySelector("label[for='profileUpload']");
+
+    fileInput.addEventListener("change", function () {
+      const fileName = this.files[0]?.name || "Choose Image";
+      label.innerHTML = `<i class="bi bi-upload me-2"></i>${fileName}`;
+    });
+  });
 </script>
 @endpush

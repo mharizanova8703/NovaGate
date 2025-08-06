@@ -1,4 +1,26 @@
 #profile-section {
+    max-width: 600px;
+    margin: auto;
+    #profileUpload {
+        display: none;
+    }
+
+    label[for="profileUpload"] {
+        cursor: pointer;
+        font-weight: 500;
+        padding: 0.6rem 1rem;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+        display: inline-block;
+        border: 1px solid $info-color;
+        color: $info-color;
+
+        &:hover {
+            background-color: $info-color;
+            color: white;
+        }
+    }
+
     .btn-red {
         background-color: $red;
         border-radius: 1.6rem;
@@ -6,12 +28,15 @@
         font-weight: bold;
         padding: 0.7rem 3rem;
         text-decoration: none;
+        margin: auto;
+        text-align: center;
+
 
         &:hover {
             border-color: 1px solid $info-color;
             background-color: $black;
             color: $info-color;
-            border: $info-color;
+            border:  1px solid $info-color;
         }
     }
 
