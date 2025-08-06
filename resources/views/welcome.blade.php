@@ -27,10 +27,8 @@
     <div id="app">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-md shadow-sm sticky-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+            <div class="container-fluid">
+              
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -87,17 +85,17 @@
 
         <!-- Main Content -->
         <main    id="main" class="py-4">
-            <section class="trivia-section container py-5 m-0">
+            <section class="trivia-section container-fluid py-5 m-0">
                 <div class="text-center mb-3">
                     <span class="badge  px-3 py-2 fs-5">Score: <span id="score">0</span>/1</span>
                 </div>
                 <h2 class="text-center py-5 bebas-neue-regular font-xxmd "> Movie Buff Challenge</h2>
-                <div class="row g-4 justify-content-center">
+                <div class="">
                     <!-- Trivia Card -->
-                    <div class="row g-4 justify-content-center">
+                    <div class="row  d-flex justify-content-center mx-auto">
                         <!-- Card 1 -->
-                        <div class="col-md-4">
-                            <div class="card trivia-card p-3 shadow-sm">
+                        <div class="col-md-4 d-flex">
+                            <div class="card trivia-card p-3 shadow-sm w-100 h-100">
                                 <h5 class="mb-3">Which movie won Best Picture in 1994?</h5>
                                 <ul class="list-unstyled">
                                     <li><button class="btn  w-100 my-1">The Shawshank
@@ -112,8 +110,8 @@
                         </div>
 
                         <!-- Card 2 -->
-                        <div class="col-md-4">
-                            <div class="card trivia-card p-3 shadow-sm">
+                        <div class="col-md-4 d-flex">
+                            <div class="card trivia-card p-3 shadow-sm w-100 h-100">
                                 <h5 class="mb-3">Who directed *Inception* (2010)?</h5>
                                 <ul class="list-unstyled">
                                     <li><button class="btn  w-100 my-1 correct">Christopher
@@ -127,8 +125,8 @@
                         </div>
 
                         <!-- Card 3 -->
-                        <div class="col-md-4">
-                            <div class="card trivia-card p-3 shadow-sm">
+                        <div class="col-md-4 d-flex">
+                            <div class="card trivia-card p-3 shadow-sm w-100 h-100">
                                 <h5 class="mb-3">Which actor played Iron Man?</h5>
                                 <ul class="list-unstyled">
                                     <li><button class="btn  w-100 my-1">Chris Evans</button></li>
@@ -155,34 +153,44 @@
 
 
     @stack('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
     let score = 0;
+    const totalQuestions = 3;
+
     document.querySelectorAll(".trivia-card").forEach(card => {
       const buttons = card.querySelectorAll("button");
+
       buttons.forEach(button => {
         button.addEventListener("click", () => {
           if (card.classList.contains("answered")) return;
 
           const isCorrect = button.classList.contains("correct");
-   button.classList.add("text-white", "text-black", isCorrect ? "btn-success" : "btn-danger");
+          button.classList.add("text-black", "text-black", isCorrect ? "btn-success" : "btn-danger");
 
-
-
-          // Disable all buttons
           buttons.forEach(btn => btn.disabled = true);
           card.classList.add("answered");
 
           if (isCorrect) {
             score++;
             document.getElementById("score").textContent = score;
+
+            // 🎉 Trigger confetti if they get all answers correct
+            if (score === totalQuestions) {
+              confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 }
+              });
+            }
           }
         });
       });
     });
   });
-    </script>
-
+</script>
 </body>
 
 </html>
