@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
@@ -68,5 +70,34 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    protected function verifyRecaptcha(string $token): array
+    {
+        return Http::asForm()->post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'secret'   => config('services.recaptcha.secret_key'),
+                'response' => $token,
+                'remoteip' => request()->ip(),
+            ]
+        )->json();
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            // your existing rules...
+            'g-recaptcha-response' => ['required', 'string'],
+        ]);
+
+        $result = $this->verifyRecaptcha($request->input('g-recaptcha-response'));
+
+        if (!($result['success'] ?? false)) {
+            return back()
+                ->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed. Please try again.'])
+                ->withInput();
+        }
+
+
     }
 }
