@@ -4,11 +4,11 @@
 <div id="home-page" class="container-fluid p-0 m-0">
 
     {{-- Welcome Section --}}
-    <section class="d-flex justify-content-center align-items-center py-5">
-        <div class="col-md-6 text-center">
-            <img src="/images/banner-log-in.jpg" alt="NovaGate Logo" class="img-fluid mb-4">
+    <section class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-center  text-center bg-red p-0">
+        <div class="col-md-6 col-12 text-center">
+            <img src="/images/banner-log-in.jpg" alt="NovaGate Logo" class="img-fluid p-0">
         </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-6 col-12 text-center py-5">
             <h1 class="welcome-title bebas-neue-regular">Welcome to NovaGate</h1>
             <p class="lead">Your gateway to the world of movies and entertainment.</p>
             <h1 class="welcome-title bebas-neue-regular">Welcome<br>{{ Auth::user()->name }}</h1>
@@ -17,7 +17,7 @@
 
     {{-- Card Sections --}}
     <section class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-5 py-5 card-section">
-        <div class="col-md-4 text-center">
+        <div class="col-md-3 col-12 text-center">
             <img class="w-100 card-svg" src="/images/one-card.svg" alt="Charlie Chaplin">
         </div>
         <div class="col-md-5 card-info text-white">

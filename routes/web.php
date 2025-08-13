@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\MovieController;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 Route::get('/search', [MovieController::class, 'search'])->name('movies.search');
+Route::get('/test-mail', function () {
+    Mail::raw('Hello from MailHog!', function ($m) {
+        $m->to('test@example.com')->subject('MailHog test');
+    });
+    return 'Sent';
+});
