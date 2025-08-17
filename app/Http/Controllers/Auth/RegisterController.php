@@ -7,97 +7,51 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Http;   // make sure this is imported
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'                  => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'              => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response'  => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                        'secret'   => config('services.recaptcha.secret_key'),
+                        'response' => $value,
+                        'remoteip' => request()->ip(),
+                    ])->json();
+
+                    if (!($response['success'] ?? false)) {
+                        $fail('reCAPTCHA verification failed. Please try again.');
+                    }
+                }
+            ],
+        ], [
+            'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-    protected function verifyRecaptcha(string $token): array
-    {
-        return Http::asForm()->post(
-            'https://www.google.com/recaptcha/api/siteverify',
-            [
-                'secret'   => config('services.recaptcha.secret_key'),
-                'response' => $token,
-                'remoteip' => request()->ip(),
-            ]
-        )->json();
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            // your existing rules...
-            'g-recaptcha-response' => ['required', 'string'],
-        ]);
-
-        $result = $this->verifyRecaptcha($request->input('g-recaptcha-response'));
-
-        if (!($result['success'] ?? false)) {
-            return back()
-                ->withErrors(['g-recaptcha-response' => 'reCAPTCHA verification failed. Please try again.'])
-                ->withInput();
-        }
-
-
     }
 }

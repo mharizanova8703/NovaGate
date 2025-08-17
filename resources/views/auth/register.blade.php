@@ -74,13 +74,20 @@
 @push('scripts')
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('register-form');
-      const btn  = document.getElementById('register-btn');
-      form.addEventListener('submit', function () {
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
-      });
+   document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('register-form');
+    const btn  = document.getElementById('register-btn');
+
+    form.addEventListener('submit', (e) => {
+      const hasToken = grecaptcha.getResponse();
+      if (!hasToken) {
+        e.preventDefault();
+        alert('Please complete the reCAPTCHA.');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
     });
+  });
   </script>
 @endpush
