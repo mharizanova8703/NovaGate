@@ -13,70 +13,60 @@
         </div>
     </section>
 
-    {{-- Card Sections --}}
-    <section class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-5 py-5 card-section">
-        <div class="col-md-3 col-12 text-center">
-            <img class="w-100 card-svg" src="/images/one-card.svg" alt="Charlie Chaplin">
-        </div>
-        <div class="col-md-5 card-info text-white">
-            <h2 class="mb-3 bebas-neue-regular position-relative font-xxl  mx-auto">
-                Charlie Chaplin
-                <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 10">
-                    <path d="M0 5 Q50 0 100 5 T200 5" stroke="white" stroke-width="2" fill="transparent" />
-                </svg>
-            </h2>
+@php
+  $cards = [
+    [
+      'img' => '/images/one-card.svg',
+      'imgAlt' => 'Charlie Chaplin silhouette holding a cane',
+      'title' => 'Charlie Chaplin',
+      'id' => 'chaplin-intro',
+      'text' => "Did you know? Charlie Chaplin defined silent-era comedy with 'The Tramp'—acting, directing, and producing while blending humor and social critique.",
+      'reverse' => false,
+    ],
+    [
+      'img' => '/images/two-card.svg',
+      'imgAlt' => 'Classic film reel and popcorn',
+      'title' => '1939 – The Wizard of Oz',
+      'id' => 'chaplin-ua',
+      'text' => 'One of the first films to use Technicolor so vividly — audiences were stunned when Dorothy opened the door to Oz.',
+      'reverse' => true,
+    ],
+    [
+      'img' => '/images/three-card.svg',
+      'imgAlt' => 'Projector beam with film strip',
+      'title' => '1977 – Star Wars (A New Hope)',
+      'id' => 'chaplin-sound-era',
+      'text' => "Revolutionized visual effects and sound design, setting new standards for space epics.",
+      'reverse' => false,
+    ],
+  ];
+@endphp
 
-            <p class="font-xsm">
-                Did you know? Charlie Chaplin was one of the most iconic figures of the silent film era, known for his
-                character “The Tramp.”
-                He directed, produced, and starred in most of his films, bringing humor and social commentary to
-                audiences worldwide.
-            </p>
-        </div>
-    </section>
+@foreach ($cards as $card)
+  <section
+    class="d-flex {{ $card['reverse'] ? 'flex-md-row-reverse' : 'flex-md-row' }} flex-column align-items-center justify-content-center gap-5 py-5 card-section"
+    role="region" aria-labelledby="{{ $card['id'] }}">
+    <div class="col-md-5 col-12 text-center">
+      <img class="card-svg"
+           src="{{ $card['img'] }}"
+           alt="{{ $card['imgAlt'] }}"
+           width="640" height="480"
+           loading="lazy" decoding="async">
+    </div>
 
-    <section
-        class="d-flex flex-column flex-md-row-reverse align-items-center justify-content-center gap-5 py-5 card-section">
-        <div class="col-md-5 text-center">
-            <img class="card-svg" src="/images/two-card.svg" alt="Popcorn">
-        </div>
-            <div class="col-md-5 card-info text-white">
-            <h2 class="mb-3 bebas-neue-regular position-relative font-xxl  mx-auto">
-                Charlie Chaplin
-                <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 10">
-                    <path d="M0 5 Q50 0 100 5 T200 5" stroke="white" stroke-width="2" fill="transparent" />
-                </svg>
-            </h2>
+    <div class="col-md-5 col-12 card-info text-white">
+      <h2 id="{{ $card['id'] }}" class="mb-3 bebas-neue-regular position-relative font-xxl mx-auto">
+        {{ $card['title'] }}
+        <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 10"
+             aria-hidden="true" focusable="false">
+          <path d="M0 5 Q50 0 100 5 T200 5" stroke="white" stroke-width="2" fill="transparent" />
+        </svg>
+      </h2>
+      <p class="font-xsm">{{ $card['text'] }}</p>
+    </div>
+  </section>
+@endforeach
 
-            <p class="font-xsm">
-                Did you know? Charlie Chaplin was one of the most iconic figures of the silent film era, known for his
-                character “The Tramp.”
-                He directed, produced, and starred in most of his films, bringing humor and social commentary to
-                audiences worldwide.
-            </p>
-        </div>
-    </section>
-
-    <section class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-5 py-5 card-section">
-        <div class="col-md-5 text-center">
-            <img class="card-svg" src="/images/three-card.svg" alt="Longest Movie">
-        </div>
-             <div class="col-md-5 card-info text-white">
-            <h2 class="mb-3 bebas-neue-regular position-relative font-xxl  mx-auto">
-                Charlie Chaplin
-                <svg class="underline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 10">
-                    <path d="M0 5 Q50 0 100 5 T200 5" stroke="white" stroke-width="2" fill="transparent" />
-                </svg>
-            </h2>
-
-            <p class="font-xsm">
-                Did you know? Charlie Chaplin was one of the most iconic figures of the silent film era, known for his
-                character “The Tramp.”
-                He directed, produced, and starred in most of his films, bringing humor and social commentary to
-                audiences worldwide.
-            </p>
-        </div>
-    </section>
 
 </div>
 @endsection
@@ -85,42 +75,52 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    // Respect reduced motion
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      // Instantly reveal content without animation
+      document.querySelectorAll(".card-svg, .card-info").forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = "none";
+      });
+      return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
-    // Card fade-in effect
+    // Images
     gsap.utils.toArray(".card-svg").forEach((card) => {
-        gsap.from(card, {
-            opacity: 0.7,   // start slightly faded
-            scale: 0.75,
-            duration: 1,
-            ease: "power5.out",
-            scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-            }
-        });
+      gsap.from(card, {
+        opacity: 0.7,
+        scale: 0.75,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
     });
 
-    // Text opacity transition
+    // Text — alternate slide direction based on DOM order
     gsap.utils.toArray(".card-info").forEach((info, i) => {
-        const direction = i % 2 === 0 ? 50 : -50; // alternate slide direction
-        gsap.fromTo(info, 
-            { opacity: 0, x: direction }, 
-            {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: info,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            }
-        );
+      const xOffset = (i % 2 === 0) ? 50 : -50;
+      gsap.fromTo(info,
+        { opacity: 0, x: xOffset },
+        {
+          opacity: 1, x: 0, duration: 0.9, ease: "power2.out",
+          scrollTrigger: {
+            trigger: info,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
     });
-});
+  });
 </script>
+
 @endpush
