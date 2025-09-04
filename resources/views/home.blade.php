@@ -24,7 +24,7 @@
       'reverse' => false,
     ],
     [
-      'img' => '/images/two-card.svg',
+      'img' => '/images/wizard-of-oz.png',
       'imgAlt' => 'Classic film reel and popcorn',
       'title' => '1939 – The Wizard of Oz',
       'id' => 'chaplin-ua',
@@ -32,7 +32,7 @@
       'reverse' => true,
     ],
     [
-      'img' => '/images/three-card.svg',
+      'img' => '/images/star-wars.png',
       'imgAlt' => 'Projector beam with film strip',
       'title' => '1977 – Star Wars (A New Hope)',
       'id' => 'chaplin-sound-era',
@@ -50,7 +50,7 @@
       <img class="card-svg"
            src="{{ $card['img'] }}"
            alt="{{ $card['imgAlt'] }}"
-           width="640" height="480"
+           width="340" height="480"
            loading="lazy" decoding="async">
     </div>
 
