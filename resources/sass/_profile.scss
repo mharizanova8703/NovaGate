@@ -1,83 +1,105 @@
 #profile-section {
-    max-width: 600px;
-    margin: auto;
-    #profileUpload {
-        display: none;
-    }
 
-    label[for="profileUpload"] {
-        cursor: pointer;
-        font-weight: 500;
-        padding: 0.6rem 1rem;
-        border-radius: 0.25rem;
-        transition: all 0.3s ease;
-        display: inline-block;
-        border: 1px solid $info-color;
-        color: $info-color;
-
-        &:hover {
-            background-color: $info-color;
-            color: white;
-        }
-    }
-
-    .btn-red {
-        background-color: $red;
-        border-radius: 1.6rem;
-        color: $white;
-        font-weight: bold;
-        padding: 0.7rem 3rem;
-        text-decoration: none;
-        margin: auto;
-        text-align: center;
-
-
-        &:hover {
-            border-color: 1px solid $info-color;
-            background-color: $black;
-            color: $info-color;
-            border:  1px solid $info-color;
-        }
-    }
+   background-image: url('../../public/images/film-bg.svg');
+   background-size: cover;
+   background-position: center;
+   min-height: 100vh;
 
     .profile-section {
-        background-color: $red;
-        padding: 2rem;
+        width: 75%;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        color: #fff;
 
-        .card {
+
+
+        #profileUpload {
+            display: none;
+        }
+
+        label[for="profileUpload"] {
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0.6rem 1rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 1px solid $info-color;
+            color: $info-color;
+
+            &:hover {
+                background-color: $info-color;
+                color: white;
+            }
+        }
+
+        .btn-red {
             background-color: $red;
+            border-radius: 1.6rem;
+            color: $white;
+            font-weight: bold;
+            padding: 0.7rem 3rem;
+            text-decoration: none;
+            margin: auto;
+            text-align: center;
+
+
+            &:hover {
+                border-color: 1px solid $info-color;
+                background-color: $black;
+                color: $info-color;
+                border: 1px solid $info-color;
+            }
+        }
+
+        .profile-section {
+            background-color: $red;
+            padding: 2rem;
+
+            .card {
+                background-color: $red;
+            }
+        }
+
+        .form-control {
+            border-radius: 0;
+        }
+
+        h2 {
+            font-weight: 800;
+
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+
+    }
+
+    #popcorn-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+        z-index: 0;
+
+        .popcorn {
+            position: absolute;
+            top: -100px;
+            width: 90px;
         }
     }
 
-    .form-control {
-        border-radius: 0;
-    }
+    label[for="profileUpload"] {}
 
-    h2 {
-        font-weight: 800;
-
-    }
-
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-    }
-
-
-}
-
-#popcorn-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-    z-index: 0;
-
-    .popcorn {
-        position: absolute;
-        top: -100px;
-        width: 90px;
-    }
+    .btn-red {}
 }

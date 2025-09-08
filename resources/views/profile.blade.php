@@ -7,9 +7,11 @@
 </div>
 
 @section('content')
-<div id="profile-section" class="container">
+<div id="profile-section">
+<div class="container profile-section">
 
-    <div class="d-flex align-items-center gap-4 mb-4">
+
+    <div class="d-flex align-items-center gap-4 mt-5 mb-4">
         <!-- Avatar -->
         <div>
             @if(auth()->user()->profile_image)
@@ -62,6 +64,7 @@
         <div class="mx-auto pt-4">
             <button type="submit" class="btn-red ">Update Profile</button>
 
+        </div>
         </div>
     </form>
 </div>
