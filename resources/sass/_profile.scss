@@ -30,7 +30,8 @@
             transition: all 0.3s ease;
             display: inline-block;
             border: 1px solid $info-color;
-            color: $info-color;
+            color: $white;
+              background-color: $info-color;
 
             &:hover {
                 background-color: $info-color;

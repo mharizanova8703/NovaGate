@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <div id="popcorn-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; z-index: 0;">
-    @for ($i = 0; $i < 20; $i++) <img src="{{ asset('images/popcorn.png') }}" class="popcorn"
+    @for ($i = 0; $i < 10; $i++) <img src="{{ asset('images/popcorn.png') }}" class="popcorn"
         style="position: absolute; top: -100px; width: 80px;" alt="Popcorn">
         @endfor
 </div>
@@ -39,30 +39,30 @@
 
         <div class="mb-3">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}">
+            <input type="text" name="name" class="form-control p-2" value="{{ auth()->user()->name }}">
         </div>
 
         <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}">
+            <input type="email" name="email" class="form-control p-2" value="{{ auth()->user()->email }}">
         </div>
 
         <div class="mb-3">
             <label>Address</label>
-            <input type="text" name="address" class="form-control" value="{{ auth()->user()->address }}">
+            <input type="text" name="address" class="form-control p-2" value="{{ auth()->user()->address }}">
         </div>
 
         <div class="mb-3">
             <label class="form-label d-block">Change Profile Image</label>
 
-            <label for="profileUpload" class="btn ">
-                <i class="bi bi-upload me-2"></i>Choose Image
+            <label for="profileUpload" class="btn bg-info-color">
+                Choose Image
             </label>
 
             <input type="file" name="profile_image" id="profileUpload" class="d-none">
         </div>
         <div class="mx-auto pt-4">
-            <button type="submit" class="btn-red ">Update Profile</button>
+            <button type="submit" class="btn-red border-0">Update Profile</button>
 
         </div>
         </div>
