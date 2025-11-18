@@ -3,7 +3,6 @@
 @section('content')
 <div id="home-page" class="container-fluid p-0 m-0">
 
-    {{-- Welcome Section --}}
     <section class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-center  text-center bg-red p-0">
         <div class="col-md-6 col-12 text-center">
             <img src="/images/banner-log-in.jpg" alt="NovaGate Logo" class="img-fluid p-0">
@@ -76,11 +75,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Respect reduced motion
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduceMotion) {
-      // Instantly reveal content without animation
       document.querySelectorAll(".card-svg, .card-info").forEach(el => {
         el.style.opacity = 1;
         el.style.transform = "none";
@@ -105,7 +102,6 @@
       });
     });
 
-    // Text — alternate slide direction based on DOM order
     gsap.utils.toArray(".card-info").forEach((info, i) => {
       const xOffset = (i % 2 === 0) ? 50 : -50;
       gsap.fromTo(info,
