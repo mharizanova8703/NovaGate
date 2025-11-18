@@ -12,7 +12,6 @@
 
 
     <div class="d-flex align-items-center gap-4 mt-5 mb-4">
-        <!-- Avatar -->
         <div>
             @if(auth()->user()->profile_image)
             <img src="{{ asset(auth()->user()->profile_image) }}" width="80" height="80"
@@ -23,7 +22,6 @@
             @endif
         </div>
 
-        <!-- Name -->
         <div>
             <h2 class="m-0 bebas-neue-regular">{{ old('name', Auth::user()->name) }}</h2>
         </div>

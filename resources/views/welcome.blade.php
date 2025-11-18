@@ -96,8 +96,11 @@
                     <span class="badge  px-3 py-2 fs-5">Score: <span id="score">0</span>/1</span>
                 </div>
                 <h2 class="text-center py-5 bebas-neue-regular font-xxmd "> Movie Buff Challenge</h2>
+                
+                <div id="feedback-container" class="text-center mb-4"></div>
+                
                 <div class="">
-                    <!-- Trivia Card -->
+                    <!-- Trivia Cards -->
                     <div class="row  d-flex justify-content-center mx-auto">
                         <!-- Card 1 -->
                         <div class="col-md-4 d-flex">
@@ -129,8 +132,6 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- Card 3 -->
                         <div class="col-md-4 d-flex">
                             <div class="card trivia-card p-3 shadow-sm w-100 h-100">
                                 <h5 class="mb-3">Which actor played Iron Man?</h5>
@@ -152,54 +153,80 @@
         <x-footer />
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
-
-
-
-    @stack('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
     let score = 0;
     const totalQuestions = 3;
+    let answeredCount = 0;
 
     document.querySelectorAll(".trivia-card").forEach(card => {
-      const buttons = card.querySelectorAll("button");
+        const buttons = card.querySelectorAll("button");
 
-      buttons.forEach(button => {
-        button.addEventListener("click", () => {
-          if (card.classList.contains("answered")) return;
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                if (card.classList.contains("answered")) return;
 
-          const isCorrect = button.classList.contains("correct");
-          button.classList.add("text-black", "text-black", isCorrect ? "btn-success" : "btn-danger");
+                const isCorrect = button.classList.contains("correct");
+                button.classList.add(
+                    "text-black", 
+                    isCorrect ? "btn-success" : "btn-danger"
+                );
 
-          buttons.forEach(btn => btn.disabled = true);
-          card.classList.add("answered");
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                    if (!isCorrect && btn.classList.contains("correct")) {
+                        btn.classList.add("btn-success", "text-black");
+                    }
+                });
 
-          if (isCorrect) {
-            score++;
-            document.getElementById("score").textContent = score;
-if (score === totalQuestions) {
-  // 🎉 Confetti celebration
-  confetti({
-    particleCount: 150,
-    spread: 90,
-    origin: { y: 0.6 }
-  });
+                card.classList.add("answered");
+                answeredCount++;
 
-  document.querySelector('.trivia-section').style.display = 'none';
+                if (isCorrect) {
+                    score++;
+                }
 
-  document.getElementById('win-message').style.display = 'block';
-}
-          }
+                if (answeredCount === totalQuestions) {
+                    setTimeout(() => {
+                        showFinalMessage(score, totalQuestions);
+                    }, 500);
+                }
+            });
         });
-      });
     });
-  });
+
+    function showFinalMessage(finalScore, total) {
+        const isAllCorrect = finalScore === total;
+        const feedbackDiv = document.getElementById("feedback-container");
+        
+        if (!isAllCorrect) {
+            feedbackDiv.innerHTML = `<h4 class="text-danger fw-bold font-xxmd">Try again next time!</h4>`;
+        }
+        
+        document.getElementById("score").textContent = finalScore;
+
+        if (isAllCorrect) {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
+
+                document.querySelector('.trivia-section').style.display = 'none';
+                document.getElementById('win-message').style.display = 'block';
+            }, 1000);
+        }
+    }
+});
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
+    @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    </script>
+
 </body>
 
 </html>

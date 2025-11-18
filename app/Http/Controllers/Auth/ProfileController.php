@@ -23,7 +23,7 @@ class ProfileController extends Controller
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // ✅ Force Eloquent model
+
         $user = User::find(Auth::id());
 
         $user->name = $data['name'];
